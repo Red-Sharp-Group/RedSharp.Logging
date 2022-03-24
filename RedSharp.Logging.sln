@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedSharp.Logging.System", "RedSharp.Logging.System\RedSharp.Logging.System.csproj", "{1C404CE3-BA0D-49DF-BBF7-DC39714CAA26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedSharp.System", "RedSharp.System\RedSharp.System\RedSharp.System.csproj", "{F4C618D5-DF97-4E2D-AB8F-6A645DD55449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSharp.TestConsole", "RedSharp.TestConsole\RedSharp.TestConsole.csproj", "{811B1BF4-5C9A-48B0-9F61-1BE7F8D4530E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C404CE3-BA0D-49DF-BBF7-DC39714CAA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C404CE3-BA0D-49DF-BBF7-DC39714CAA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C404CE3-BA0D-49DF-BBF7-DC39714CAA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C404CE3-BA0D-49DF-BBF7-DC39714CAA26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C618D5-DF97-4E2D-AB8F-6A645DD55449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C618D5-DF97-4E2D-AB8F-6A645DD55449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C618D5-DF97-4E2D-AB8F-6A645DD55449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C618D5-DF97-4E2D-AB8F-6A645DD55449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811B1BF4-5C9A-48B0-9F61-1BE7F8D4530E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811B1BF4-5C9A-48B0-9F61-1BE7F8D4530E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811B1BF4-5C9A-48B0-9F61-1BE7F8D4530E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811B1BF4-5C9A-48B0-9F61-1BE7F8D4530E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A9EB9D7-F5BB-40C9-825E-3BD4310FECCF}
+	EndGlobalSection
+EndGlobal
