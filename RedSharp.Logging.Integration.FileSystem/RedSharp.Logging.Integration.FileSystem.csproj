@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="$(ProjectDir)..\Definitions.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="$(SolutionDir)\RedSharp.System\RedSharp.System\RedSharp.System.csproj" />
+    <ProjectReference Include="$(SolutionDir)\RedSharp.FileSystem\RedSharp.FileSystem.System\RedSharp.FileSystem.System.csproj" />
+    <ProjectReference Include="..\RedSharp.Logging.System\RedSharp.Logging.System.csproj" />
+  </ItemGroup>
+
+</Project>

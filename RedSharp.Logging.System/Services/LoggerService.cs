@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using RedSharp.Logging.Sys.Enums;
@@ -16,12 +17,15 @@ namespace RedSharp.Logging.Sys.Services
 
         private ILoggerClient[] _clients;
 
-        public LoggerService(String name, Object metadata)
+        public LoggerService(String name, Object metadata, IEnumerable<ILoggerClient> clients)
         {
             ArgumentsGuard.ThrowIfNullOrEmpty(name);
+            ArgumentsGuard.ThrowIfNull(clients);
 
             Name = name;
             Metadata = metadata;
+
+            _clients = clients.ToArray();
         }
 
         /// <inheritdoc/>
