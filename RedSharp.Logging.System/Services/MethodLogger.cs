@@ -52,7 +52,7 @@ namespace RedSharp.Logging.Sys.Services
         /// <inheritdoc/>
         public void Write(LogLevel level, String template, Object metadata = null)
         {
-            if (level >= Level)
+            if (level < Level)
                 return;
 
             LoggerGuard.ThrowIfLevelIsNone(level);
@@ -70,7 +70,7 @@ namespace RedSharp.Logging.Sys.Services
         /// <inheritdoc/>
         public void Write<T1>(LogLevel level, String template, T1 arg1, Object metadata = null)
         {
-            if (level >= Level)
+            if (level < Level)
                 return;
 
             LoggerGuard.ThrowIfLevelIsNone(level);
@@ -90,7 +90,7 @@ namespace RedSharp.Logging.Sys.Services
         /// <inheritdoc/>
         public void Write<T1, T2>(LogLevel level, String template, T1 arg1, T2 arg2, Object metadata = null)
         {
-            if (level >= Level)
+            if (level < Level)
                 return;
 
             LoggerGuard.ThrowIfLevelIsNone(level);
@@ -111,7 +111,7 @@ namespace RedSharp.Logging.Sys.Services
         /// <inheritdoc/>
         public void Write<T1, T2, T3>(LogLevel level, String template, T1 arg1, T2 arg2, T3 arg3, Object metadata = null)
         {
-            if (level >= Level)
+            if (level < Level)
                 return;
 
             LoggerGuard.ThrowIfLevelIsNone(level);
@@ -133,7 +133,7 @@ namespace RedSharp.Logging.Sys.Services
         /// <inheritdoc/>
         public void Write<T1, T2, T3, T4>(LogLevel level, String template, T1 arg1, T2 arg2, T3 arg3, T4 arg4, Object metadata = null)
         {
-            if (level >= Level)
+            if (level < Level)
                 return;
 
             LoggerGuard.ThrowIfLevelIsNone(level);
@@ -156,7 +156,7 @@ namespace RedSharp.Logging.Sys.Services
         /// <inheritdoc/>
         public void Write<T1, T2, T3, T4, T5>(LogLevel level, String template, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, Object metadata = null)
         {
-            if (level >= Level)
+            if (level < Level)
                 return;
 
             LoggerGuard.ThrowIfLevelIsNone(level);
@@ -184,7 +184,7 @@ namespace RedSharp.Logging.Sys.Services
         /// </summary>
         private void WriteMethodStart()
         {
-            if (Level < MethodStartEndLogLevel)
+            if (MethodStartEndLogLevel < Level)
                 return;
 
             var logEvent = new LogMessage();
@@ -202,7 +202,7 @@ namespace RedSharp.Logging.Sys.Services
         /// </summary>
         private void WriteMethodEnd()
         {
-            if (Level < MethodStartEndLogLevel)
+            if (MethodStartEndLogLevel < Level)
                 return;
 
             var logEvent = new LogMessage();

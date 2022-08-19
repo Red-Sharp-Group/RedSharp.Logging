@@ -8,6 +8,8 @@ namespace RedSharp.Logging.Sys.Interfaces.Utils
 {
     public interface ILogFormatter
     {
+        String Type { get; }
+
         void OnNext(ref LogMessage message, TextWriter writer);
     }
 }

@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using RedSharp.FileSystem.Sys.Services;
+using RedSharp.FileSystem.Sys.Utils;
+using RedSharp.Logging.Integration.FileSystem;
+using RedSharp.Logging.Sys.Enums;
+using RedSharp.Logging.Sys.Interfaces.Services;
+using RedSharp.Logging.Sys.Interfaces.Utils;
+using RedSharp.Logging.Sys.Services;
+using RedSharp.Logging.Sys.Utils;
 using RedSharp.Sys.Utils;
 
 namespace RedSharp.TestConsole
@@ -12,59 +20,66 @@ namespace RedSharp.TestConsole
 
         static void Main(string[] args)
         {
-            var buffer = new SwapBuffer<char>(20, 1000, ConsoleWrite, false);
+            var path = new FileSystemPath(@"C:\Users\andrii.v.kudriavtsev\Desktop\Logs", false);
+            var fileSystem = new LocalFileSystemManager();
+            var formatter = new StringLogFormatter();
+            var fileSystemClient = new FileSystemBufferedClient(fileSystem, path, formatter);
+            var bufferClient = new BufferedLogerClient(5, 50, new TimeSpan(1000000), new IBufferedClient[] { fileSystemClient });
+            var logger = new LoggerService("Terminal", null, new ILoggerClient[] { bufferClient });
 
-            int a = 0;
-            int b = 0;
-            int c = 0;
-            int d = 0;
-            int e = 0;
-            int f = 0;
-            int g = 0;
-            int h = 0;
+            logger.Level = LogLevel.Verbose;
 
-            var tasks = new List<Task>()
+            var obj = new Example(logger);
+
+            var task1 = Task.Factory.StartNew(() =>
             {
-                Task.Factory.StartNew(() => Write(buffer, 'a', ref a)),
-                Task.Factory.StartNew(() => Write(buffer, 'b', ref b)),
-                Task.Factory.StartNew(() => Write(buffer, 'c', ref c)),
-                Task.Factory.StartNew(() => Write(buffer, 'd', ref d)),
-                Task.Factory.StartNew(() => Write(buffer, 'e', ref e)),
-                Task.Factory.StartNew(() => Write(buffer, 'f', ref f)),
-                Task.Factory.StartNew(() => Write(buffer, 'g', ref g)),
-                Task.Factory.StartNew(() => Write(buffer, 'h', ref h)),
-            };
+                Thread.CurrentThread.Name = "First";
 
-            Task.WaitAll(tasks.ToArray(), 10000);
+                for (int i = 0; i < 60; i++)
+                    obj.RunExample(i);
+            });
 
-            buffer.ExchangeBuffer();
+            var task2 = Task.Factory.StartNew(() =>
+            {
+                Thread.CurrentThread.Name = "Second";
 
-            iterations = a + b + c + d + e + f + g + h;
+                for (int i = 0; i < 60; i++)
+                    obj.RunExample(i);
+            });
 
-            Console.WriteLine(iterations);
+            Task.WaitAll(task1, task2);
+        }
+    }
+
+    class Example 
+    {
+        private IClassLogger _classLogger;
+
+        public Example(ILoggerService service)
+        {
+            _classLogger = service.CreateClassLogger(nameof(Example));
         }
 
-        static void ConsoleWrite(char[] buffer, int length)
+        public void RunExample(int iteration)
         {
-            Console.WriteLine(buffer);
+            using var logger = _classLogger.CreateMethodLogger();
+
+            logger.WriteInformation("Test message from iteration #{0}", iteration);
+            logger.WriteInformation("Example message from the method.");
+            logger.WriteInformation("Incredible,\r\nwhat do you think?");
+
+            RunSubTask(iteration);
+
+            logger.WriteInformation("Example message after another method.");
+            logger.WriteInformation("Hope nothing is broken");
         }
 
-        static void Write(SwapBuffer<char> buffer, char value, ref int counter)
+        public void RunSubTask(int iteration)
         {
-            //for(int i = 0; i < 1000; i++)
-            //{
-            //    buffer.Write(value);
-            //}
+            using var logger = _classLogger.CreateMethodLogger();
 
-            //while(true)
-            //  buffer.Write(value);
-
-            while (true)
-            {
-                //Console.Write(value);
-                buffer.Write(value);
-                counter++;
-            }
+            logger.WriteInformation("Still this iteration #{0}", iteration);
+            logger.WriteInformation("Still incredible, isn't?");
         }
     }
 }

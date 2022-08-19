@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RedSharp.FileSystem\RedSharp.FileSystem.System\RedSharp.FileSystem.System.csproj" />
+    <ProjectReference Include="..\RedSharp.Logging.Integration.FileSystem\RedSharp.Logging.Integration.FileSystem.csproj" />
+    <ProjectReference Include="..\RedSharp.Logging.System\RedSharp.Logging.System.csproj" />
     <ProjectReference Include="..\RedSharp.System\RedSharp.System\RedSharp.System.csproj" />
   </ItemGroup>
 

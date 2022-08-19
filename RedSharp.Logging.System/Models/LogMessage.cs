@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using RedSharp.Logging.Sys.Enums;
 using RedSharp.Logging.Sys.Interfaces.Utils;
+
+[assembly:InternalsVisibleTo("RedSharp.TestConsole")]
 
 namespace RedSharp.Logging.Sys.Models
 {
